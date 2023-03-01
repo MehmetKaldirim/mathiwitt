@@ -1,8 +1,12 @@
 package com.mathiwitt.kafka.admin.exception;
 
-public class KafkaClientException extends RuntimeException{
+/**
+ * Exception class for Kafka client error situations.
+ */
+public class KafkaClientException extends RuntimeException {
 
-    public KafkaClientException() {}
+    public KafkaClientException() {
+    }
 
     public KafkaClientException(String message) {
         super(message);

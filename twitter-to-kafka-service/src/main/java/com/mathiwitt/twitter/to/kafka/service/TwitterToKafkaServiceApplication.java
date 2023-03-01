@@ -3,6 +3,7 @@ package com.mathiwitt.twitter.to.kafka.service;
 
 import com.mathiwitt.config.TwitterToKafkaServiceConfigData;
 
+import com.mathiwitt.twitter.to.kafka.service.init.StreamInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -19,19 +20,15 @@ import java.util.Arrays;
 @ComponentScan(basePackages = "com.mathiwitt")
 public class TwitterToKafkaServiceApplication implements CommandLineRunner{
     private static final Logger LOG = LoggerFactory.getLogger(TwitterToKafkaServiceApplication.class);
-    private final TwitterToKafkaServiceConfigData twitterToKafkaServiceConfigData;
+
     private final StreamRunner streamRunner;
 
-    public TwitterToKafkaServiceApplication(TwitterToKafkaServiceConfigData twitterToKafkaServiceConfigData,
-                                            StreamRunner runner) {
-        this.twitterToKafkaServiceConfigData = twitterToKafkaServiceConfigData;
+    private final StreamInitializer streamInitializer;
+
+    public TwitterToKafkaServiceApplication(StreamRunner runner, StreamInitializer initializer) {
         this.streamRunner = runner;
-
+        this.streamInitializer = initializer;
     }
-
-
-
-
 
     public static void main(String[] args) {
         SpringApplication.run(TwitterToKafkaServiceApplication.class, args);
@@ -39,11 +36,8 @@ public class TwitterToKafkaServiceApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        LOG.info("App starts..");
-        LOG.info(Arrays.toString(twitterToKafkaServiceConfigData.getTwitterKeywords().toArray(new String[] {})));
-        LOG.info(twitterToKafkaServiceConfigData.getWelcomeMessage());
+        LOG.info("App starts...");
+        streamInitializer.init();
         streamRunner.start();
     }
-
-
 }
