@@ -1,6 +1,7 @@
 package com.mathiwitt.twitter.to.kafka.service.runner.impl;
 
-import com.mathiwitt.twitter.to.kafka.service.config.TwitterToKafkaServiceConfigData;
+
+import com.mathiwitt.config.TwitterToKafkaServiceConfigData;
 import com.mathiwitt.twitter.to.kafka.service.listener.TwitterKafkaStatusListener;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

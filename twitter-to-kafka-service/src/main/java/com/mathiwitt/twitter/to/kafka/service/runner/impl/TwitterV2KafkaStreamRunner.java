@@ -1,6 +1,7 @@
 package com.mathiwitt.twitter.to.kafka.service.runner.impl;
 
-import com.mathiwitt.twitter.to.kafka.service.config.TwitterToKafkaServiceConfigData;
+
+import com.mathiwitt.config.TwitterToKafkaServiceConfigData;
 import com.mathiwitt.twitter.to.kafka.service.runner.StreamRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-@ConditionalOnExpression("${twitter-to-kafka-service.enable-v2-tweets} && not ${twitter-to-kafka-service.enable-mock-tweets}")
+//@ConditionalOnExpression("${twitter-to-kafka-service.enable-v2-tweets} && not ${twitter-to-kafka-service.enable-mock-tweets}")
+@ConditionalOnProperty(name = "twitter-to-kafka-service.enable-mock-tweets", havingValue = "false", matchIfMissing = true)
 public class TwitterV2KafkaStreamRunner implements StreamRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterV2KafkaStreamRunner.class);

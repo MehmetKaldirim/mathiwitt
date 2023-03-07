@@ -1,4 +1,4 @@
-package com.mathiwitt.twitter.to.kafka.service.config;
+package com.mathiwitt.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -15,4 +15,8 @@ public class TwitterToKafkaServiceConfigData {
     private String twitterV2BaseUrl;
     private String twitterV2RulesBaseUrl;
     private String twitterV2BearerToken;
+    private Boolean enableMockTweets;
+    private Long mockSleepMs;
+    private Integer mockMinTweetLength;
+    private Integer mockMaxTweetLength;
 }
