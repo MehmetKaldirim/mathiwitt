@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      allow-override: true
+      override-none: true
+#we want to enable overwriting the properties for spring cloud configuration from the config server repository
